@@ -1,0 +1,129 @@
+:root {
+  --width: 80px;
+}
+
+.stepper {
+  background-color: snow;
+  margin: 100px auto;
+  width: 700px;
+  min-height: 500px;
+  height: auto;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+}
+.stepper h1 {
+  color: #111111;
+  font-family: "Raleway", sans-serif;
+  font-size: 45px;
+  font-weight: normal;
+
+  margin: 0 0 20px 0;
+}
+
+.stepper .step-count {
+  width: 25px;
+  border-radius: 50%;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: gray;
+  transition: all 200ms ease-out;
+}
+.stepper .step-count.active {
+  background-color: #42c3ec;
+  color: #ffffff;
+}
+.stepper .step-count.disabled {
+  background-color: gray;
+  color: #000000;
+}
+.stepper .step-count.done {
+  background-color: #3ae063;
+}
+
+.stepper .stepper-line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.stepper .step-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 200ms ease-out;
+  position: relative;
+}
+
+.stepper .step-block.active:not(:first-child)::before {
+  content: "";
+  width: var(--width);
+  height: 3px;
+  position: absolute;
+  left: -90px;
+  top: 10px;
+  animation-duration: 1s;
+  animation-name: stepper-slidein;
+  background-color: #42c3ec;
+}
+.stepper .step-block.disabled:not(:first-child)::before {
+  content: "";
+  width: 0;
+  height: 3px;
+  position: absolute;
+  left: -90px;
+  top: 10px;
+  animation-duration: 1s;
+  animation-name: slideout;
+  background-color: #42c3ec;
+}
+.stepper .step-block.done:not(:first-child)::before {
+  content: "";
+  width: var(--width);
+  height: 3px;
+  position: absolute;
+  left: -90px;
+  top: 10px;
+  animation-duration: 1s;
+  animation-name: stepper-slidein;
+  background-color: #3ae063;
+}
+
+@keyframes stepper-slidein {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: var(--width);
+  }
+}
+@keyframes slideout {
+  from {
+    width: var(--width);
+  }
+
+  to {
+    width: 0;
+  }
+}
+
+.step-one,
+.step-two,
+.step-three,
+.step-four {
+  animation-name: steps;
+  animation-duration: 0.4s;
+}
+
+@keyframes steps {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
